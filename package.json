@@ -1,0 +1,25 @@
+{
+  "name": "simple_nginx_status_parser",
+  "version": "0.0.1",
+  "description": "nodejs, ws, parser, nginx, practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krybordevelop/simple_nginx_status_parser.git"
+  },
+  "author": "krybordevelop@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Krybordevelop/simple_nginx_status_parser/issues"
+  },
+  "homepage": "https://github.com/Krybordevelop/simple_nginx_status_parser#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
