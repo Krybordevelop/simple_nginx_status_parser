@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nginx Stats</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+<body>
+    
+    <div class="main">
+        <h2>Nginx Stats</h2>
+    <div>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+    </div>
+    <div class="">
+        <table>
+            <tr>
+              <th>Active connections</th>
+              <th>Accepts Total</th>
+              <th>Handled Total</th>
+              <th>Requests Total</th>
+              <th>Reading</th>
+              <th>Writing</th>
+              <th>Waiting</th>
+            </tr>
+            <tr>
+              <td class="Active_connections"></td>
+              <td class="Accepts_Total"></td>
+              <td class="Handled_Total"></td>
+              <td class="Requests_Total"></td>
+              <td class="Reading"></td>
+              <td class="Writing"></td>
+              <td class="Waiting"></td>
+            </tr>
+            <tr>
+                <td class="Raw_Data" colspan="7"></td>
+            </tr>
+          </table>
+    </div>
+    </div>
+    <script src="src/script.js">
+
+    </script>
+</body>
+</html>
