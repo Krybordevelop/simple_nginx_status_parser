@@ -21,9 +21,9 @@ const parse_response = (response) => {
    return(final_josn)
 }
 
-const get_nginx_data = async () => {
+const get_nginx_data = async (url='http://127.0.0.1/nginx_status',timeout) => {
     try{
-    const {body} = await got('http://127.0.0.1/nginx_status', {
+    const {body} = await got(url, {
     });
         return parse_response(body)
     }catch(err){
