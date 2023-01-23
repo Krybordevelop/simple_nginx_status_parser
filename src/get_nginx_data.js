@@ -1,11 +1,6 @@
 import got from 'got'
 
 
-// let time = '0'
-// const timer = () => {
-//     setInterval(()=>{time++},100)
-// }
-// timer()
 
 const parse_response = (response) => {
    let parse_data = response.split(' ')
@@ -21,14 +16,15 @@ const parse_response = (response) => {
    return(final_josn)
 }
 
-const get_nginx_data = async (url='http://127.0.0.1/nginx_status',timeout) => {
+const get_nginx_data = async (url='http://127.0.0.1/nginx_status') => {
     try{
-    const {body} = await got(url, {
-    });
+    const {body} = await got(url, {});
+        console.log(parse_response(body))
         return parse_response(body)
     }catch(err){
+        console.log(err)
         return err.code  
-      }
+    }
 }
 
 

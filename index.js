@@ -14,17 +14,29 @@ app.use(express.static('public'))
 
 
 wss.on('connection', (ws) => {
-    console.log('client connected')
-    ws.on('message', (message) => {g
-        console.log('received: %s', message);
-        ws.send(`Hello, you sent -> ${message}`);
-    });
-    const test = setInterval(async ()=>{
-        let data = await get_nginx_data()
-        let parsed_data = JSON.stringify(data)
-        ws.send(parsed_data)} ,2000)
-    let data = JSON.stringify({message:'hello'})
-    ws.send(data);
+    //console.log('client connected')
+    ws.on('message', (message) => {
+        let test
+        message = JSON.parse(message.toString())
+        console.log(message)
+        if(message.message === "start"){
+            let interval = message.interval
+             test = setInterval(async (interval) => {
+                let data = await get_nginx_data()
+                let parsed_data = JSON.stringify(data)
+                ws.send(parsed_data)
+            }, interval*1000 )
+
+        }else if(message.message === "stop"){
+            clearInterval(test)
+        }else{
+
+        }
+    })
+
+
+    //let data = JSON.stringify({message:'hello'})
+    //ws.send(data);
 });
 
 server.listen(process.env.PORT || 8999, () => {
