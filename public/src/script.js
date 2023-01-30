@@ -5,6 +5,7 @@ window.onload = function(){
 
 }
 
+var validate_url = "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
 
 function show(message){
   document.querySelector('.Active_connections').innerHTML = message['Active connections']
@@ -24,28 +25,27 @@ var connection = new WebSocket('ws://127.0.0.1:8999');
 connection.onopen = function () {};
 connection.onerror = function (error) {};
 connection.onmessage = function (message) {
-    // try to decode json (I assume that each message
-    // from server is json)
+  //console.log(message)
     try {
       var json = JSON.parse(message.data);
-      show(json)
+      console.log(json)
+      //show(json)
     } catch (e) {
-        console.log(e)
-         console.log('This doesn\'t look like a valid JSON: ',
-          message.data);
+        //console.log(e)
+        console.log('This doesn\'t look like a valid JSON: ',message.data);
       return;
     }
-    // handle incoming message
 };
 
 
 function sendSocket(message, interval = 1){
   let res = {}
   res.message = message
-  res.interval = interval
+  res.interval = document.querySelector("#interval").value
+  res.url = document.querySelector("#url").value
   connection.send(JSON.stringify(res))
 }
 
 
-document.querySelector("#start").addEventListener('click', ()=>{sendSocket('start', 2)})
+document.querySelector("#start").addEventListener('click', ()=>{sendSocket('start')})
 document.querySelector("#stop").addEventListener('click', () =>{sendSocket('stop')})

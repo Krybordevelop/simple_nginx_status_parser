@@ -7,15 +7,32 @@
     <title>Nginx Stats</title>
     <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 <body>
     
-    <div class="main">
-        <h2>Nginx Stats</h2>
+    <div class="container">
+        <h2 class="center">Nginx Stats</h2>
     <div>
-        <button id="start">Start</button>
-        <button id="stop">Stop</button>
+        <div class="row">
+            <div class="input-field col s4 offset-s3">
+              <input id="url" placeholder="http://127.0.0.1/nginx_status" id="url" type="text" class="validate">
+              <label for="nginx status page">nginx status page url</label>
+            </div>
+            <div class="input-field col s2">
+              <input id="interval" placeholder="in second" id="inetval" type="number" class="validate">
+              <label for="interval">Interval</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s2 offset-s4">
+                <a id="start" class="waves-effect waves-light btn">Start<i class="material-icons right">start</i></a>
+            </div>
+            <div class="input-field col s2">
+                <a id="stop" class="waves-effect waves-light btn">Stop<i class="material-icons right">stop</i></a>
+            </div>
+        </div>
     </div>
     <div class="">
         <table>
@@ -43,8 +60,7 @@
           </table>
     </div>
     </div>
-    <script src="src/script.js">
-
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="src/script.js"></script>
 </body>
 </html>

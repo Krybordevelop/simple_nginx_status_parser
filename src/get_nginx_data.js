@@ -1,17 +1,18 @@
 import got from 'got'
 import fs from 'fs/promises'
 
-export const get_nginx_data = async (url='http://127.0.0.1/nginx_status') => {
-    try{
-    const {body} = await got(url, {});
-        //console.log(parse_response(body))
-        return parse_response(body)
-    }catch(err){
-        console.log(err)
-        return err.code  
-    }
-}
+// export const get_nginx_data = async (url='http://127.0.0.1/nginx_status') => {
+//     try{
+//     const {body} = await got(url, {});
+//         //console.log(parse_response(body))
+//         return parse_response(body)
+//     }catch(err){
+//         console.log(err)
+//         return err.code  
+//     }
+// }
 
+//write regular expression for http link
 
 export class Nginx_data_getter{
     constructor(nginx_status_url, mode, options){
@@ -67,21 +68,20 @@ export class Nginx_data_getter{
      }
 
       
-      async collect_data(timer){
+      async collect_data(timer,callback){
         // get initial values
         let start = Date.now()
-        let get_start_value = await get_nginx_data()
+        let get_start_value = await this.get_nginx_data()
 
         setTimeout(async()=>{
-            let get_end_value = await get_nginx_data()
+            let get_end_value = await this.get_nginx_data()
             let final = {}
             final.accepts = get_end_value['Accepts Total'] - get_start_value['Accepts Total']
             final.handelet = get_end_value['Handled Total'] - get_start_value['Handled Total']
             final.total = get_end_value['Requests Total'] - get_start_value['Requests Total']
             final.per = timer
             final.avg = final.total/timer
-            console.log(final)
-            return final
+            callback(final)
         },timer*1000)
       }
 
