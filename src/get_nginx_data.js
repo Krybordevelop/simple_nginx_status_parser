@@ -1,18 +1,4 @@
 import got from 'got'
-import fs from 'fs/promises'
-
-// export const get_nginx_data = async (url='http://127.0.0.1/nginx_status') => {
-//     try{
-//     const {body} = await got(url, {});
-//         //console.log(parse_response(body))
-//         return parse_response(body)
-//     }catch(err){
-//         console.log(err)
-//         return err.code  
-//     }
-// }
-
-//write regular expression for http link
 
 export class Nginx_data_getter{
     constructor(nginx_status_url, mode, options){
@@ -84,5 +70,4 @@ export class Nginx_data_getter{
             callback(final)
         },timer*1000)
       }
-
 }
