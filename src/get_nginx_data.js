@@ -55,7 +55,6 @@ export class Nginx_data_getter{
 
       
       async collect_data(timer,callback){
-        // get initial values
         let start = Date.now()
         let get_start_value = await this.get_nginx_data()
 
@@ -64,9 +63,11 @@ export class Nginx_data_getter{
             let final = {}
             final.accepts = get_end_value['Accepts Total'] - get_start_value['Accepts Total']
             final.handelet = get_end_value['Handled Total'] - get_start_value['Handled Total']
-            final.total = get_end_value['Requests Total'] - get_start_value['Requests Total']
-            final.per = timer
-            final.avg = final.total/timer
+            final.request = get_end_value['Requests Total'] - get_start_value['Requests Total']
+            final.seconds = timer
+            final.avg_per_second = final.request/timer
+            final.data = get_end_value
+            final.datetime = new Date()
             callback(final)
         },timer*1000)
       }
